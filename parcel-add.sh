@@ -3,7 +3,7 @@
 # Usage: parcel-add.sh <tracking_number> <carrier_code> [description]
 set -euo pipefail
 
-SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKILL_DIR="$(cd "$(dirname "$(readlink -f "$0" 2>/dev/null || readlink "$0" || echo "$0")")" && pwd)"
 source "${SKILL_DIR}/config.env" 2>/dev/null || { echo "❌ Missing config.env"; exit 1; }
 
 BASE_URL="https://api.parcel.app/external"

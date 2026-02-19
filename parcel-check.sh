@@ -4,7 +4,7 @@
 # Returns: notifications for status changes, or nothing if no changes
 set -euo pipefail
 
-SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKILL_DIR="$(cd "$(dirname "$(readlink -f "$0" 2>/dev/null || readlink "$0" || echo "$0")")" && pwd)"
 WORKSPACE="$(cd "${SKILL_DIR}/../.." && pwd)"
 STATE_FILE="${WORKSPACE}/memory/parcel-state.json"
 
